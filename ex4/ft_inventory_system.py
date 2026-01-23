@@ -1,38 +1,39 @@
 #!/usr/bin/env python3
 
 inventory = {
-    "sword": {
-        "type": "weapon",
-        "quantity": 1,
-        "value": 300
-    },
-    "potion": {
-        "type": "consumable",
-        "quantity": 5,
-        "value": 20
-    },
-    "helmet": {
-        "type": "armor",
-        "quantity": 1,
-        "value": 200
-    },
-    "shield": {
-        "type": "armor",
-        "quantity": 2,
-        "value": 150
-    },
-    "armor": {
-        "type": "armor",
-        "quantity": 3,
-        "value": 500
-    }
-}
+      "alice": {
+         "items": {
+            "pixel_sword": 1,
+            "code_bow": 1,
+            "health_byte": 1,
+            "quantum_ring": 3
+         },
+         "total_value": 1875,
+         "item_count": 6
+      },
+      "bob": {
+         "items": {
+            "code_bow": 3,
+            "pixel_sword": 2
+         },
+         "total_value": 900,
+         "item_count": 5
+      },
+      "charlie": {
+         "items": {
+            "pixel_sword": 1,
+            "code_bow": 1
+         },
+         "total_value": 350,
+         "item_count": 2
+      },
+   }
 
 
 def System_analysis():
     total_inventory = 0
     for value in inventory.values():
-        total_inventory += value.get("quantity")
+        total_inventory += value.get("item_count")
     print("=== Inventory System Analysis ===")
     print("total items in inventory: ", total_inventory)
 
@@ -44,7 +45,7 @@ def System_analysis():
 def Current_inventory(total_inventory):
     print("=== Current Inventory ===")
     for name, value in inventory.items():
-        qty = value.get("quantity")
+        qty = value.get("item_count")
         percentage = (qty * 100) / total_inventory
         str_percent = str(percentage)
         print(name, ": ", qty, " units (", str_percent[:4], "%)", sep="")
@@ -56,17 +57,18 @@ def Statistics():
     least_item = None
 
     for name, value in inventory.items():
-        qty = value.get("quantity")
-        if most_item is None or qty > inventory.get(most_item).get("quantity"):
+        qty = value.get("item_count")
+        if most_item is None or qty > inventory.get(most_item).get("\
+item_count"):
             most_item = name
-        if least_item is None or qty < inventory.get(least_item).get("quantity"
-                                                                     ):
+        if least_item is None or qty < inventory.get(least_item).get("\
+item_count"):
             least_item = name
     print("=== Inventory Statistics ===")
     print("Most abundant:", most_item,
-          "(" + str(inventory.get(most_item).get("quantity")) + " units)")
+          "(" + str(inventory.get(most_item).get("item_count")) + " units)")
     print("Least abundant:", least_item,
-          "(" + str(inventory.get(least_item).get("quantity")) + " units)")
+          "(" + str(inventory.get(least_item).get("item_count")) + " units)")
     print()
 
 
@@ -76,7 +78,7 @@ def Categories():
         "Scarce": {}
     }
     for name, value in inventory.items():
-        qty = value.get("quantity")
+        qty = value.get("item_count")
         if qty >= 5:
             categories.get("Moderate").update({name: qty})
         else:
@@ -91,7 +93,7 @@ def management():
     restock = dict()
 
     for name, value in inventory.items():
-        qty = value.get("quantity")
+        qty = value.get("item_count")
         if qty <= 1:
             restock.update({name: qty})
 
@@ -105,7 +107,7 @@ def Properties_demo():
     print("Dictionary keys:", list(inventory.keys()))
     values = []
     for name, value in inventory.items():
-        qty = value.get("quantity")
+        qty = value.get("item_count")
         values.append(qty)
 
     print("Dictionary values:", values)

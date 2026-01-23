@@ -1,4 +1,4 @@
-#!/usr/bin/env p
+#!/usr/bin/env python3
 
 print("=== Game Data Stream Processor ===")
 print("Processing 1000 game events...")
@@ -48,8 +48,10 @@ for event_id in stream:
     event_action = action(event_id)
 
     if event_id <= 3:
-        print(f"Event {event_id}: Player {player} (level {level})\
-{event_action}")
+        print(
+            f"Event {event_id}: Player {player['player']} "
+            f"(level {level}) {event_action}"
+        )
 
     if level >= 10:
         high_level_players += 1
@@ -80,8 +82,8 @@ def fibonacci():
 
 fib = fibonacci()
 print("Fibonacci sequence (first 10):", end=" ")
-for _ in range(10):
-    print(next(fib), end=", " if _ < 9 else "\n")
+for i in range(10):
+    print(next(fib), end=", " if i < 9 else "\n")
 
 
 def primes():
@@ -91,6 +93,7 @@ def primes():
         for i in range(2, n):
             if n % i == 0:
                 is_prime = False
+                break
         if is_prime:
             yield n
         n += 1
@@ -98,5 +101,5 @@ def primes():
 
 prime_stream = primes()
 print("Prime numbers (first 5):", end=" ")
-for _ in range(5):
-    print(next(prime_stream), end=", " if _ < 4 else "\n")
+for i in range(5):
+    print(next(prime_stream), end=", " if i < 4 else "\n")

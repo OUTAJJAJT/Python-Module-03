@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 import math
+import sys
+from typing import Tuple, Optional
 
 
-def distance_3d(p1, p2):
+def distance_3d(p1: Tuple[int, int, int], p2: Tuple[int, int, int]) -> float:
     x1, y1, z1 = p1
     x2, y2, z2 = p2
     return math.sqrt(
@@ -13,7 +15,7 @@ def distance_3d(p1, p2):
     )
 
 
-def parse_coordinates(coord_str):
+def parse_coordinates(coord_str: str) -> Optional[Tuple[int, int, int]]:
     try:
         x, y, z = coord_str.split(",")
         position = (int(x), int(y), int(z))
@@ -27,32 +29,34 @@ def parse_coordinates(coord_str):
         return None
 
 
-def unpacking_demo(position):
+def unpacking_demo(position: Tuple[int, int, int]) -> None:
     print("Unpacking demonstration:")
     x, y, z = position
     print(f"Player at x={x}, y={y}, z={z}")
     print(f"Coordinates: X={x}, Y={y}, Z={z}")
 
 
-def position():
+def position() -> None:
     print("=== Game Coordinate System ===\n")
 
-    origin = (0, 0, 0)
-    spawn_point = (10, 20, 5)
+    origin: Tuple[int, int, int] = (0, 0, 0)
+    spawn_point: Tuple[int, int, int] = (10, 20, 5)
 
     print(f"Position created: {spawn_point}")
     dist = distance_3d(origin, spawn_point)
     print(f"Distance between {origin} and {spawn_point}: {dist:.2f}\n")
 
-    parsed = parse_coordinates("3,4,0")
-    if parsed:
-        dist = distance_3d(origin, parsed)
-        print(f"Distance between {origin} and {parsed}: {dist}\n")
+    if len(sys.argv) > 1:
+        user_coords = sys.argv[1]
+        print(f"User provided coordinates: {user_coords}")
+        parsed = parse_coordinates(user_coords)
 
-    parse_coordinates("abc,def,ghi")
+        if parsed:
+            dist = distance_3d(origin, parsed)
+            print(f"Distance between {origin} and {parsed}: {dist:.2}\n")
 
-    if parsed:
-        unpacking_demo(parsed)
+        if parsed:
+            unpacking_demo(parsed)
 
 
 if __name__ == "__main__":
