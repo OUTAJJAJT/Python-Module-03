@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-def achievement():
+def achievement() -> None:
     Player_alice = {"first_kill", "level_10", "treasure_hunter", "speed_demon"}
     Player_bob = {"first_kill", "level_10", "boss_slayer", "collector"}
     Player_charlie = {"level_10", "treasure_hunter", "boss_slayer", "\
@@ -33,5 +33,4 @@ speed_demon", "perfectionist"}
     print("Bob unique:", Player_bob.difference(Player_alice))
 
 
-if __name__ == "__main__":
-    achievement()
+achievement()

@@ -2,10 +2,9 @@
 
 import math
 import sys
-from typing import Tuple, Optional
 
 
-def distance_3d(p1: Tuple[int, int, int], p2: Tuple[int, int, int]) -> float:
+def distance_3d(p1: tuple[int, int, int], p2: tuple[int, int, int]) -> float:
     x1, y1, z1 = p1
     x2, y2, z2 = p2
     return math.sqrt(
@@ -15,7 +14,7 @@ def distance_3d(p1: Tuple[int, int, int], p2: Tuple[int, int, int]) -> float:
     )
 
 
-def parse_coordinates(coord_str: str) -> Optional[Tuple[int, int, int]]:
+def parse_coordinates(coord_str: str) -> tuple[int, int, int] | None:
     try:
         x, y, z = coord_str.split(",")
         position = (int(x), int(y), int(z))
@@ -29,7 +28,7 @@ def parse_coordinates(coord_str: str) -> Optional[Tuple[int, int, int]]:
         return None
 
 
-def unpacking_demo(position: Tuple[int, int, int]) -> None:
+def unpacking_demo(position: tuple[int, int, int]) -> None:
     print("Unpacking demonstration:")
     x, y, z = position
     print(f"Player at x={x}, y={y}, z={z}")
@@ -39,8 +38,8 @@ def unpacking_demo(position: Tuple[int, int, int]) -> None:
 def position() -> None:
     print("=== Game Coordinate System ===\n")
 
-    origin: Tuple[int, int, int] = (0, 0, 0)
-    spawn_point: Tuple[int, int, int] = (10, 20, 5)
+    origin: tuple[int, int, int] = (0, 0, 0)
+    spawn_point: tuple[int, int, int] = (10, 20, 5)
 
     print(f"Position created: {spawn_point}")
     dist = distance_3d(origin, spawn_point)
@@ -59,5 +58,4 @@ def position() -> None:
             unpacking_demo(parsed)
 
 
-if __name__ == "__main__":
-    position()
+position()

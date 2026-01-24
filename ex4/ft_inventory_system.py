@@ -30,7 +30,7 @@ inventory = {
    }
 
 
-def System_analysis():
+def System_analysis() -> int:
     total_inventory = 0
     for value in inventory.values():
         total_inventory += value.get("item_count")
@@ -42,7 +42,7 @@ def System_analysis():
     return total_inventory
 
 
-def Current_inventory(total_inventory):
+def Current_inventory(total_inventory: int) -> None:
     print("=== Current Inventory ===")
     for name, value in inventory.items():
         qty = value.get("item_count")
@@ -52,7 +52,7 @@ def Current_inventory(total_inventory):
     print()
 
 
-def Statistics():
+def Statistics() -> None:
     most_item = None
     least_item = None
 
@@ -72,7 +72,7 @@ item_count"):
     print()
 
 
-def Categories():
+def Categories() -> None:
     categories = {
         "Moderate": {},
         "Scarce": {}
@@ -89,7 +89,7 @@ def Categories():
     print()
 
 
-def management():
+def management() -> None:
     restock = dict()
 
     for name, value in inventory.items():
@@ -102,7 +102,7 @@ def management():
     print()
 
 
-def Properties_demo():
+def Properties_demo() -> None:
     print("=== Dictionary Properties Demo ===")
     print("Dictionary keys:", list(inventory.keys()))
     values = []
@@ -115,10 +115,9 @@ def Properties_demo():
           inventory.get("sword") is not None)
 
 
-if __name__ == "__main__":
-    total = System_analysis()
-    Current_inventory(total)
-    Statistics()
-    Categories()
-    management()
-    Properties_demo()
+total = System_analysis()
+Current_inventory(total)
+Statistics()
+Categories()
+management()
+Properties_demo()

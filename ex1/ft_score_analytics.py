@@ -3,7 +3,7 @@
 import sys
 
 
-def process_scores(arguments):
+def process_scores(arguments: list) -> list:
     scores = []
 
     if len(arguments) < 2:
@@ -21,7 +21,7 @@ score1> <score2> ...")
     return scores
 
 
-def analyze_scores(scores):
+def analyze_scores(scores: list) -> None:
     if not scores:
         return
 
@@ -41,7 +41,6 @@ def analyze_scores(scores):
     print(f"Score range: {max(scores) - min(scores)}")
 
 
-if __name__ == "__main__":
-    print("=== Player Score Analytics ===")
-    scores = process_scores(sys.argv)
-    analyze_scores(scores)
+print("=== Player Score Analytics ===")
+scores = process_scores(sys.argv)
+analyze_scores(scores)
